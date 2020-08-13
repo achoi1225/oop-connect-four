@@ -4,8 +4,8 @@ export class Column {
     }
 
     add(playerNumber) {
-        let index = this.tokenContainer.lastIndexOf(0);
-        if (index >= null) {
+        let index = this.tokenContainer.lastIndexOf(null);
+        if (index >= 0) {
             this.tokenContainer[index] = playerNumber;
         }
     }

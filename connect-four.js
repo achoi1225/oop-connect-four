@@ -29,8 +29,13 @@ document
 document
     .getElementById("click-targets")
     .addEventListener('click', e => {
-        game.playInColumn();
-        updateUI();
+        const target = e.target.id;
+        if(target.startsWith("column-")) {
+            const index = Number.parseInt(target[target.length-1]);
+            game.playInColumn(index);
+            updateUI();
+        }
+
 });
 
 function disableNewGame(bool) {
