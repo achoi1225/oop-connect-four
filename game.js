@@ -32,6 +32,10 @@ export class Game {
 
     getCurrentPlayer() {
         return this.currentPlayer;
-    } 
+    }
+
+    isColumnFull(colNum) {
+        return this.columns[colNum].isFull();
+    }
 }
 

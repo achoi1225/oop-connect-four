@@ -13,4 +13,8 @@ export class Column {
     getTokenAt(rowIndex) {
         return this.tokenContainer[rowIndex];
     }
+
+    isFull() {
+        return this.tokenContainer.every(elem => elem);
+    }
 }

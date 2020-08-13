@@ -54,6 +54,28 @@ function updateUI() {
             .innerHTML = game.getName();
         const currentPlayer = game.getCurrentPlayer();
         updateBoard(currentPlayer);
+
+        for (let row = 0; row < 6; row++) {
+            for (let col = 0; col < 7; col++) {
+                const square = document.getElementById(`square-${row}-${col}`);
+
+                square.innerHTML = '';
+
+                const token = game.getTokenAt(row, col);
+
+                if (token === 1) {
+                    const tokenDiv = document.createElement('div');
+                    tokenDiv.classList.add('token');
+                    tokenDiv.classList.add('black');
+                    square.appendChild(tokenDiv);
+                } else if (token === 2) {
+                    const tokenDiv = document.createElement('div');
+                    tokenDiv.classList.add('token');
+                    tokenDiv.classList.add('red');
+                    square.appendChild(tokenDiv);
+                }
+            }
+        }
     }
 }
 
