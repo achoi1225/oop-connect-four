@@ -12,17 +12,17 @@ button {
   text-transform: uppercase;
 }
 
-button[disabled] {
+/* button[disabled] { 
   background-color: lightgray;
   color: grey;
   cursor: not-allowed;
-}
+} */
 
 button:active {
   background-color: darkred;
 }
 
-input {
+/*input {
   border: 0;
   border-bottom: 2px solid #CCC;
   box-sizing: border-box;
@@ -120,4 +120,4 @@ main {
 .full.click-target:hover {
   background-color: white;
   cursor: no-drop;
-}
+} */
