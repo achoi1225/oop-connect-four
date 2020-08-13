@@ -26,6 +26,13 @@ document
         updateUI();
     });
 
+document
+    .getElementById("click-targets")
+    .addEventListener('click', e => {
+        game.playInColumn();
+        updateUI();
+});
+
 function disableNewGame(bool) {
     const newGameBtn = document.getElementById("new-game");
     newGameBtn.disabled = bool;
@@ -40,5 +47,25 @@ function updateUI() {
             .classList.remove('is-invisible');
         document.getElementById('game-name')
             .innerHTML = game.getName();
+        const currentPlayer = game.getCurrentPlayer();
+        updateBoard(currentPlayer);
+    }
+}
+
+function updateBoard(currentPlayer) {
+    if(currentPlayer === 1){
+        document.getElementById("click-targets") 
+        .classList.add('black');
+
+        document.getElementById("click-targets")
+            .classList.remove('red');
+
+    } else {
+        document.getElementById("click-targets")
+        .classList.add('red');
+
+        document.getElementById("click-targets")
+            .classList.remove('black');
+
     }
 }
