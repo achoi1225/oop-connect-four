@@ -1,5 +1,7 @@
 import { Column } from './column.js';
 import { ColumnWinInspector } from './column-win-inspector.js';
+import { RowWinInspector } from './row-win-inspector.js';
+import { DiagonalWinInspector } from './diagonal-win-inspector.js';
 
 export class Game {
     constructor(player1, player2) {
@@ -34,6 +36,8 @@ export class Game {
         }
         this.checkForTie();
         this.checkForColumnWin();
+        this.checkForRowWin();
+        this.checkForDiagonalWin();
     }
 
     getTokenAt(rowNum, colNum) {
@@ -65,6 +69,36 @@ export class Game {
         for (let i = 0; i < this.columns.length; i++) {
             const column = this.columns[i];
             const winner = columnInspector.inspect(column);
+            if (winner !== 0) {
+                this.winnerNumber = winner;
+                return;
+            }
+        }
+    }
+
+    checkForRowWin() {
+        if (this.winnerNumber !== 0) {
+            return;
+        }
+        const rowInspector = new RowWinInspector();
+        for (let i = 0; i < 4; i++) {
+            const columns = this.columns.slice(i, i + 4);
+            const winner = rowInspector.inspect(columns);
+            if (winner !== 0) {
+                this.winnerNumber = winner;
+                return;
+            }
+        }
+    }
+
+    checkForDiagonalWin() {
+        if (this.winnerNumber !== 0) {
+            return;
+        }
+        const diagonalInspector = new DiagonalWinInspector();
+        for (let i = 0; i < 4; i++) {
+            const columns = this.columns.slice(i, i + 4);
+            const winner = diagonalInspector.inspect(columns);
             if (winner !== 0) {
                 this.winnerNumber = winner;
                 return;
