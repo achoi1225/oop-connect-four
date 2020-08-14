@@ -53,7 +53,7 @@ function updateUI() {
         document.getElementById('game-name')
             .innerHTML = game.getName();
         const currentPlayer = game.getCurrentPlayer();
-        updateBoard(currentPlayer);
+        updateUIForCurrentPlayer(currentPlayer);
 
         // Redraw the game board =============================================
         for (let row = 0; row < 6; row++) {
@@ -90,7 +90,7 @@ function updateUI() {
     }
 }
 
-function updateBoard(currentPlayer) {
+function updateUIForCurrentPlayer(currentPlayer) {
     if(currentPlayer === 1){
         document.getElementById("click-targets") 
         .classList.add('black');
