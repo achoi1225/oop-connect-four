@@ -1,6 +1,19 @@
 import { Game } from './game.js';
+import { GameJsonDeserializer } from './game-json-deserializer.js';
+import { GameJsonSerializer } from './game-json-serializer.js';
 
 let game = undefined;
+
+const gameJsonStr = localStorage.getItem('game');
+if(gameJsonStr) {
+    console.log('in if');
+    const gamejsondeserializer = new GameJsonDeserializer(gameJsonStr);
+    game = gamejsondeserializer.deserialize();
+    console.log('top of connectfour.js ', game.columns);
+    updateUI();
+}
+
+
 
 document.getElementById("form-holder").addEventListener("keyup", e => {
     const player1Name = document.getElementById("player-1-name");
@@ -24,6 +37,7 @@ document
         disableNewGame(true);
 
         updateUI();
+        saveGame();
     });
 
 document
@@ -32,12 +46,13 @@ document
         if(game.winnerNumber !== 0) {
             return;
         }
-        
+
         const target = e.target.id;
         if(target.startsWith("column-")) {
             const index = Number.parseInt(target[target.length-1]);
             game.playInColumn(index);
             updateUI();
+            saveGame();
         }
 
     });
@@ -45,6 +60,13 @@ document
 function disableNewGame(bool) {
     const newGameBtn = document.getElementById("new-game");
     newGameBtn.disabled = bool;
+}
+
+function saveGame() {
+    const serializer = new GameJsonSerializer(game);
+    const serialized = serializer.serialize();
+    // console.log(serialized);
+    localStorage.setItem('game', serialized);
 }
 
 function updateUI() {

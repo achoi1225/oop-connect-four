@@ -38,6 +38,8 @@ export class Game {
         this.checkForColumnWin();
         this.checkForRowWin();
         this.checkForDiagonalWin();
+
+        console.log(this.columns);
     }
 
     getTokenAt(rowNum, colNum) {
