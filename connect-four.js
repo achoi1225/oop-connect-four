@@ -29,6 +29,10 @@ document
 document
     .getElementById("click-targets")
     .addEventListener('click', e => {
+        if(game.winnerNumber !== 0) {
+            return;
+        }
+        
         const target = e.target.id;
         if(target.startsWith("column-")) {
             const index = Number.parseInt(target[target.length-1]);
@@ -36,7 +40,7 @@ document
             updateUI();
         }
 
-});
+    });
 
 function disableNewGame(bool) {
     const newGameBtn = document.getElementById("new-game");
