@@ -17,7 +17,6 @@ export class Game {
 
     playInColumn(colNum) {
         this.columns[colNum].add(this.currentPlayer);
-        console.log(this.columns[colNum]);
         if(this.currentPlayer === 1) {
             this.currentPlayer = 2;
         } else {

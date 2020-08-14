@@ -55,6 +55,7 @@ function updateUI() {
         const currentPlayer = game.getCurrentPlayer();
         updateBoard(currentPlayer);
 
+        // Redraw the game board =============================================
         for (let row = 0; row < 6; row++) {
             for (let col = 0; col < 7; col++) {
                 const square = document.getElementById(`square-${row}-${col}`);
@@ -74,6 +75,16 @@ function updateUI() {
                     tokenDiv.classList.add('red');
                     square.appendChild(tokenDiv);
                 }
+            }
+        }
+
+        // Redraw the click targets ===========================================
+        for(let i = 0; i < 7; i++) {
+            const columnIndex = document.getElementById(`column-${i}`);
+            if(game.isColumnFull(i)) {
+                columnIndex.classList.add("full");            
+            } else {
+                columnIndex.classList.remove("full");  
             }
         }
     }
